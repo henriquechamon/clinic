@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .sidebar {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 100;
+            padding: 48px 0 0;
+            box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+        }
+
+        .content {
+            margin-left: 250px; 
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Menu lateral -->
+<div class="sidebar bg-light">
+    <ul class="nav flex-column">
+        <li class="nav-item">
+            <a class="nav-link active" href="#"></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Registrar novo paciente</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Ver pacientes existentes</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/SearchPaciente">Pesquisar paciente</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Editar registro de paciente</a>
+        </li>
+    </ul>
+</div>
+
+<!-- Conteúdo principal -->
+<div class="content">
+    <h1>ClinicApp Admin Panel</h1>
+    <p>Bem-vindo ao seu dashboard!</p>
+</div>
+
+<!-- Scripts do Bootstrap (jQuery e Popper.js) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<!-- Script do Bootstrap -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
