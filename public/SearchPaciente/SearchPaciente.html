@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pesquisa de Pacientes</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa; /* Azul claro */
+            color: #333; /* Cor do texto */
+            padding-top: 80px; /* Espaçamento acima do conteúdo */
+        }
+      
+        .search-form {
+            max-width: 500px; 
+            margin: auto; 
+            background-color: #fff; 
+            padding: 20px; 
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra */
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <h1 class="text-center mb-4">Pesquisa de Pacientes</h1>
+            <form class="search-form" method="post" action="/resultPaciente">
+                <div class="form-group">
+                    <label for="nome">ID de registro do Paciente</label>
+                    <input type="number" class="form-control"  name="id" required placeholder="Digite o registro do paciente">
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Pesquisar</button>
+                <button type="button" onclick="window.history.back()" class="btn btn-primary btn-block">Retornar</button>
+            </form>
+
+            <div id="resultados" class="mt-4">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
