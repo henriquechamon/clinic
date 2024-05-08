@@ -15,6 +15,7 @@ async function setExpress() {
             const password = req.body.password;
             const response = await AdminLogin.tryLogin(email, password);
             if (response === "success") {
+    
                 res.cookie('admin', email, { maxAge: 900000, httpOnly: true });
                 res.redirect('/Dashboard'); 
             } else {
@@ -133,17 +134,85 @@ async function setExpress() {
         }
         
         } catch (error) {
+          console.log("error")
+        }
+    })
+    app.post('/createdPaciente', async (req: Request, res: Response) => {
+        try {
+            const idadePaciente = parseInt(req.body.idade);
+            const nomePaciente = req.body.nome;
+            const problemsPaciente = req.body.problems;
+            const healthPaciente = req.body.health;
+         const response = await Pacientes.CreatePaciente(nomePaciente, idadePaciente, healthPaciente, problemsPaciente);
 
+            const mHTML = `
+                <!DOCTYPE html>
+                <html lang="en">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>Paciente ${nomePaciente}</title>
+                    <style>
+                        body {
+                            font-family: Arial, sans-serif;
+                            background-color: #f8f9fa;
+                            text-align: center;
+                            padding-top: 50px;
+                        }
+                        .container {
+                            max-width: 400px;
+                            margin: 0 auto;
+                            background-color: #fff;
+                            padding: 20px;
+                            border-radius: 10px;
+                            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                        }
+                        h1 {
+                            color: #333;
+                        }
+                        .message {
+                            margin-bottom: 20px;
+                        }
+                        .back-button {
+                            background-color: #007bff;
+                            color: #fff;
+                            border: none;
+                            padding: 10px 20px;
+                            border-radius: 5px;
+                            cursor: pointer;
+                        }
+                    </style>
+                </head>
+                <body>
+                    <div class="container">
+                        <h1>Paciente criado com sucesso!</h1>
+                        <p class="message">O paciente <b>${response?.name}</b> possui o ID de registro <b>${response?.id}</b></p>
+                        <button class="back-button" onclick="window.history.back()">Voltar</button>
+                    </div>
+                </body>
+                </html>
+            `;
+            res.send(mHTML);
+        } catch(error){
+            console.log("error")
         }
     })
     app.get('/Login', (req: Request, res: Response) => {
         res.sendFile(path.join(rootDir, 'public', 'Login', 'Login.html'));
     });
     app.get('/Dashboard', (req: Request, res: Response) => {
-        res.sendFile(path.join(rootDir, 'public', 'Dashboard', 'Dashboard.html'));
+        if (req.cookies && req.cookies.admin) {
+            res.sendFile(path.join(rootDir, 'public', 'Dashboard', 'Dashboard.html'));
+        } else {
+            res.send("Login expirado")
+        }
     });
+    
     app.get('/SearchPaciente', (req: Request, res: Response) => {
         res.sendFile(path.join(rootDir, 'public', 'SearchPaciente', 'SearchPaciente.html'));
+    });
+    app.get('/CreatePaciente', (req: Request, res: Response) => {
+        res.sendFile(path.join(rootDir, 'public', 'CreatePaciente', 'CreatePaciente.html'));
     });
 
     app.listen(PORT, () => {
